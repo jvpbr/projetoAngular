@@ -14,7 +14,7 @@ export class TemaService {
   constructor(private http: HttpClient) { }
 
   token = {
-    headers: new HttpHeaders().set('Authorization', environment.token)
+    headers: new HttpHeaders().set('Authorization',  localStorage.getItem('token') || '')
   }
 
   getAllTema(): Observable<Tema[]>{

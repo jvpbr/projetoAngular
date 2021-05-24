@@ -14,18 +14,18 @@ export class TemaComponent implements OnInit {
   tema: Tema = new Tema()
   listaTemas: Tema[]
 
+  token = localStorage.getItem('token')
+
   constructor(
     private router: Router,
     private temaService: TemaService
   ) { }
 
   ngOnInit() {
-    if(environment.token == ''){
+    if(this.token == null){
       /* alert('Sua sessão expirou, faça login novamente.') */
       this.router.navigate(['/entrar'])
-    }
-
-    if(environment.token != ''){
+    }else{
       this.findAllTemas()
     }
     

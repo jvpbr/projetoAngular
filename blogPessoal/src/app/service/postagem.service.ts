@@ -14,7 +14,7 @@ export class PostagemService {
   constructor(private http: HttpClient) { }
 
   token = {
-    headers: new HttpHeaders().set('Authorization', environment.token)
+    headers: new HttpHeaders().set('Authorization',  localStorage.getItem('token') || '')
   }
 
   getAllPostagens(): Observable<Postagem[]>{
@@ -22,7 +22,7 @@ export class PostagemService {
   }
 
   getByIdPostagem(id: number): Observable<Postagem>{
-    return this.http.get<Postagem>(`${this.server}/postagens${id}`, this.token)
+    return this.http.get<Postagem>(`${this.server}/postagens/${id}`, this.token)
   }
 
   postPostagem(postagem: Postagem): Observable<Postagem>{
@@ -34,7 +34,7 @@ export class PostagemService {
   }
 
   deletePostagem(id: number){
-    return this.http.delete(`${this.server}/postagens${id}`, this.token)
+    return this.http.delete(`${this.server}/postagens/${id}`, this.token)
   }
 
 

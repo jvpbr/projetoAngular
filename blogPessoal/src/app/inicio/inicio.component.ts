@@ -25,6 +25,8 @@ export class InicioComponent implements OnInit {
   user: User = new User()
   idUser = environment.id
 
+  token = localStorage.getItem('token')
+
   constructor(
     private router: Router,
     private postagemService: PostagemService,
@@ -34,7 +36,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
 
-    if(environment.token == ''){
+    if(this.token == null){
       /* alert('Sua sessão expirou, faça login novamente.') */
       this.router.navigate(['/entrar'])
     }

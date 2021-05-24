@@ -12,6 +12,8 @@ export class AuthService {
 
   server = environment.server
 
+  token = localStorage.getItem('token')
+
   constructor(
     private http: HttpClient
   ) { }
@@ -31,8 +33,9 @@ export class AuthService {
 
   logado(){
     let ok: boolean = false
+    let token = localStorage.getItem('token')
 
-    if(environment.token != ''){
+    if(token != null){
       ok = true
     }
 
